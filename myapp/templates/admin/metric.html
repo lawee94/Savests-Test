@@ -1,0 +1,43 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}">{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}{{ block.super }} dashboard{% endblock %}
+
+{% block breadcrumbs %}
+    <div class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a> &rsaquo; Metrics
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <div id="content-main">
+
+        <form action="" method="POST">
+            {{ form.day }}
+            {% csrf_token %}
+            <button  type="submit" class="btn py-0 ml-2 border" >GO</button> 
+        </form>
+
+        <div class="mt-4">
+            <table class="table table-hover">
+                <tbody>
+                    <tr>
+                        <td><span>Numbers of registered user </span></td>
+                        <td><strong>{{ users }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td><span>Number of active user</span></td>
+                        <td><strong>{{ active_user }}</strong></td>
+                    </tr>
+                </tbody>
+            </table> 
+        </div>
+        
+    </div>
+
+{% endblock %}
